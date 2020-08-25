@@ -17,8 +17,9 @@ a{
 <body>
 <header>
 <h1>Das ist mein Blog</h1>
-
-<main id="inhaltForOneArticle" class="col-12 col-md-9">
+<div>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing</div>
+<button id="tagCloudTester">Testen Tag Cloud</button>
+<main id="inhalt" class="col-12 col-md-9">
 <button class="btn btn-primary" type="button" id="artikelNeuBtn">Neues Artikel Erstellen</button>
 </main>
 </header>
@@ -26,14 +27,12 @@ a{
 <script type="text/javascript" src="./blog.js"></script>
 <script>
 $(document).ready(()=>{
-	let maincontainer = $("#inhaltForOneArticle");
+	let maincontainer = $("#inhalt");
 	
-	const urlParams = new URLSearchParams(window.location.search);
-	const id = urlParams.get('id');
-	let article = articles.find(m=>m.id === id); 
-	let createdArticle = createArticle(article);
-	maincontainer.append(createdArticle);
-	 
+	for(let article of articles){
+		let createdArticle = createArticle(article);
+		maincontainer.append(createdArticle);
+	}
 	let sidebar = createSidebar();
 	maincontainer.append(sidebar);
 })

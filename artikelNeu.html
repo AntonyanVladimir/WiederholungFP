@@ -6,8 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Web By Step - Beispielblog</title>
 <link rel="stylesheet" type="text/css" href="./CSS/Site.css">
+<script src="./jQuery.js">
+</script>
 </head>
-<body onload="loadArticle()">
+<body>
  	<!-- Kopfteil -->
 	<header><a href="index.html" title="zur Startseite"><img title="Logo" src="images/logo.svg" alt="Logo"><h1>Web By Step - Beispielblog</h1></a>
 		<nav>Navigation</nav>
@@ -60,6 +62,9 @@
 	</footer>
 	<script type="text/javascript" src="./data.js"></script>
 	<script>
+	$(document).ready(()=>{
+		loadArticle();
+	})
 	 function loadArticle(){
 		console.log("logged.")
 		let article = articles[0];

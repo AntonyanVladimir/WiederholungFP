@@ -1,10 +1,7 @@
-	let neuArtikelBtn = document.getElementById("artikelNeuBtn");
-	neuArtikelBtn.addEventListener("click", ()=>{
+	let neuArtikelBtn = $("#artikelNeuBtn");
+	neuArtikelBtn.on("click", ()=>{
 		window.location.href = "artikelNeu.html";
 	})
-	
-	
-	
 	
 	function appendElements(container, ...elements) {
 	  for (let element of elements) {
@@ -16,24 +13,17 @@
 	const tags = [];
 	
 	  for (let tagName of tagNames) {
-	    let tag = document.createElement("a");
-	    tag.setAttribute("class", "badge badge-pill badge-primary");
-	    tag.setAttribute("href", "tagliste.html");
-	    tag.innerText = tagName + " ";
+		let tag = $(`<a href="tagliste.html" class="badge badge-pill badge-primary">${tagName}</a>`); 
 	    tags.push(tag);
 	  }
 	  return tags;
 	}
 	
-	function createSocialMediaLinks(...socialMediaNames) {
+  function createSocialMediaLinks(...socialMediaNames) {
   let socialMediaLinks = [];
 
   for (let socMed of socialMediaNames) {
-    let link = document.createElement("a");
-    link.setAttribute("target", "_blank");
-    link.setAttribute("href", "#");
-    link.innerText = socMed;
-
+	let link = $(`<a href="#" target="_blank">${socMed}</a>`);
     socialMediaLinks.push(link);
   }
   return socialMediaLinks;
@@ -41,27 +31,21 @@
 
 
 function createArticle(article){
-	let createdArticle = document.createElement("article");
+	let createdArticle = $(`
+	<article>
+		<a href="artikel.html?id=${article.id}"><h2>${article.ueberschrift}</h2></a>
+		<p>${article.datum} von  ${article.autor}</p>
+		<p>${article.anriss}</p>
+		<p>${article.text}</p>
+		
+	</article`);
 	
-	let ueberschrift = document.createElement("h2");
-	ueberschrift.textContent = article.ueberschrift;
-	ueberschrift.innerText = article.ueberschrift;
+	let tagsDiv = $("<div></div>");
 	
-	let datumUndAutor = document.createElement("p");
-	let datumUndAutorText = article.datum + " von " + article.autor;
-	datumUndAutor.innerText = datumUndAutorText;
-	
-	let anriss = document.createElement("p");
-	anriss.innerText = article.anriss;
-	
-	let content = document.createElement("p");
-	content.innerText = article.text;
-	
-	let tagsDiv = document.createElement("div");
 	let tags = createTags(article.tags);
 	appendElements(tagsDiv, ...tags);
 	
-	let socialMediaDiv = document.createElement("div");
+	let socialMediaDiv = $("<div></div>");
 	let socialMediaLinks = createSocialMediaLinks(
 	  "Teilen auf Facebook",
 	  "Twittern",
@@ -71,10 +55,6 @@ function createArticle(article){
 	
 	appendElements(
 	  createdArticle,
-	  ueberschrift,
-	  datumUndAutor,
-	  anriss,
-	  content,
 	  tagsDiv,
 	  socialMediaDiv
 	);
@@ -83,9 +63,9 @@ function createArticle(article){
 
 function createSidebar(){
 
-	let sidebar = document.createElement("aside");
-	sidebar.setAttribute("class", "col-12 col-md-3 mt-5");
-	sidebar.innerHTML = `Seitenleiste:<br>
+	//let sidebar = document.createElement("aside");
+	let sidebar = $(`<aside class = "col-12 col-md-3 mt-5">
+			Seitenleiste:<br>
 	        Login: <input type="text" size="10" /><br>
 	        Passwort: <input type="text" size="10" /><br>
 	        <a href="#">Login</a>
@@ -98,13 +78,13 @@ function createSidebar(){
 	        <a href="monatsliste.html">April 2018 (1)</a><br>
 	        <hr>
 	        Tagcloud: [Semantik] [<a href="tagliste.html">HTML5</a>] [Element] [Dokument] [HTTP]
-	        <hr>`;
+	        <hr>
+	</aside`);
+	
 	return sidebar;
 }
-let tester = document.getElementById("tagCloudTester");
-tester.addEventListener("click", ()=>{
-	this.createTagCloud(articles);
-})
+
+
 
 function createTagCloud(articles){
 	let tagMap = new Map();

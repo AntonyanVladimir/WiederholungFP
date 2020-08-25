@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 var articles = [
 	{
 		id:'article1',
