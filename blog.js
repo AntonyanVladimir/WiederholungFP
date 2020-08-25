@@ -101,3 +101,23 @@ function createSidebar(){
 	        <hr>`;
 	return sidebar;
 }
+let tester = document.getElementById("tagCloudTester");
+tester.addEventListener("click", ()=>{
+	this.createTagCloud(articles);
+})
+
+function createTagCloud(articles){
+	let tagMap = new Map();
+	
+	for(let article of articles){
+		for(let tag of article.tags){
+			if(!tagMap.has(tag)){
+				tagMap.set(tag, 1);
+			} else{
+				let value = tagMap.get(tag);
+				tagMap.set(tag, ++value);
+			}
+		}
+	}
+	console.log(tagMap);
+}
