@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- Insb. für Mobilgeräte: Anpassen an Gerätegröße, Zoom zulassen -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Web By Step - Beispielblog</title>
+<link rel="stylesheet" type="text/css" href="./CSS/Site.css">
+</head>
+<body onload="loadArticle()">
+ 	<!-- Kopfteil -->
+	<header><a href="index.html" title="zur Startseite"><img title="Logo" src="images/logo.svg" alt="Logo"><h1>Web By Step - Beispielblog</h1></a>
+		<nav>Navigation</nav>
+	</header>
+	<main>
+		<h1>Neuer Artikel</h1>
+		<form action="#" method="post" onsubmit="doSubmit()">
+			<label for="ueberschrift">Überschrift:
+				<input id="ueberschrift" name="ueberschrift" type="text">
+			</label><br>
+			<label for="autor">Autor:
+				<input id="autor" name="autor" type="text">
+			</label><br>
+			<label for="datum">Datum:
+				<input id="datum" name="datum" type="date">
+			</label><br>
+			<label for="anriss">Anrisstext:
+				<textarea id="anriss" name="anriss" cols="60" rows="5"></textarea>
+			</label><br>
+			<label for="text">Artikeltext:
+				<textarea id="text" name="text" cols="60" rows="10"></textarea>
+			</label><br>
+			<label for="tags">Tags (kommagetrennt):
+				<input id="tags" name="tags" type="text">
+			</label><br>
+			<label for="bild">Bild:
+				<input id="bild" name="bild" type="file">
+			</label><br>
+			<input type="submit" value="Senden">
+		</form>
+		<hr>
+		<aside>Seitenleiste:<br>
+		Login: <input type="text" size="10" /><br>
+		Passwort: <input type="text" size="10" /><br>
+		<a href="#">Login</a>
+		<hr>
+		<input type="text" size="10" />&nbsp;<a href="suchergebnis.html">Suchen</a>
+		<hr>
+		<a href="monatsliste.html">November 2017 (3)</a><br>
+		<a href="monatsliste.html">Dezember 2017 (1)</a><br>
+		<a href="monatsliste.html">März 2018 (2)</a><br>
+		<a href="monatsliste.html">April 2018 (1)</a><br>
+		<hr>
+		Tagcloud: [Semantik] [<a href="tagliste.html">HTML5</a>] [Element] [Dokument] [HTTP]
+		<hr>
+		</aside>
+	</main>
+	<footer>
+	<a href="impressum.html">Impressum</a> | Copyright | <a href="kontakt.html">Kontakt</a>
+	</footer>
+	<script type="text/javascript" src="./data.js"></script>
+	<script>
+	 function loadArticle(){
+		console.log("logged.")
+		let article = articles[0];
+		document.getElementById("ueberschrift").value = article.ueberschrift;
+		document.getElementById("autor").value = article.autor;
+		document.getElementById("datum").value = article.datum.substring(0,10);
+		document.getElementById("anriss").value = article.anriss;
+		document.getElementById("text").value = article.text;
+		//get Tags
+		let tagValues = "";
+		let index = 0;
+		for(let tag of article.tags){
+			if(index<article.tags.length-1)
+			tagValues += tag+', ';
+			else 
+			tagValues += tag;
+			index++;
+		}
+		document.getElementById("tags").value = tagValues;
+	}
+	
+	function doSubmit(){
+		
+		let artikelToSubmit = {};
+		artikelToSubmit.ueberschrift = document.getElementById("ueberschrift").value;
+		artikelToSubmit.autor = document.getElementById("autor").value;
+		artikelToSubmit.datum = document.getElementById("datum").value;
+		artikelToSubmit.anriss = document.getElementById("anriss").value;
+		artikelToSubmit.text = document.getElementById("text").value;
+		
+		console.log(artikelToSubmit);
+	}
+	
+	</script>
+</body>
+</html>

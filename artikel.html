@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#inhalt{
+	margin-top:20px;
+	
+}
+a{
+		margin-right:5px;
+ }
+</style>
+</head>
+<body>
+<header>
+<h1>Das ist mein Blog</h1>
+<div>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing</div>
+
+<main id="inhalt" class="col-12 col-md-9">
+<button class="btn btn-primary" type="button" id="artikelNeuBtn">Neues Artikel Erstellen</button>
+</main>
+</header>
+<script type="text/javascript" src="./data.js"></script>
+<script type="text/javascript" src="./blog.js"></script>
+<script>
+let maincontainer = document.getElementById("inhalt");
+
+for(let article of articles){
+	let createdArticle = createArticle(article);
+	maincontainer.append(createdArticle);
+}
+let sidebar = createSidebar();
+maincontainer.append(sidebar);
+</script>
+</body>
+</html>
