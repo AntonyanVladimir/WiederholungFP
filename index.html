@@ -4,31 +4,42 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-#inhalt{
-	margin-top:20px;
-	
+#inhalt {
+	margin-top: 20px;
 }
-a{
-		margin-right:5px;
- }
+
+a {
+	margin-right: 5px;
+}
 </style>
 <script src="./jQuery.js"></script>
 <link rel="stylesheet" type="text/css" href="./CSS/Site.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
-<body>
-<header><a href="index.html" title="zur Startseite"><img title="Logo" src="images/logo.svg" alt="Logo"><h1>Web By Step - Beispielblog</h1></a>
+<body class="container mt-4">
+	<header>
+		<a href="index.html" title="zur Startseite"><img title="Logo"
+			src="images/logo.svg" alt="Logo">
+		<h1>Web By Step - Beispielblog</h1></a>
 		<nav>Navigation</nav>
-</header>
+	</header>
 
-<div>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing</div>
-<button id="tagCloudTester">Testen Tag Cloud</button>
-<main id="inhalt" class="col-12 col-md-9">
-<button class="btn btn-primary" type="button" id="artikelNeuBtn">Neues Artikel Erstellen</button>
-</main>
+	<div>It is a long established fact that a reader will be
+		distracted by the readable content of a page when looking at its
+		layout. The point of using Lorem Ipsum is that it has a more-or-less
+		normal distribution of letters, as opposed to using 'Content here,
+		content here', making it look like readable English. Many desktop
+		publishing</div>
+	<button id="tagCloudTester">Testen Tag Cloud</button>
+	<main id="inhalt" class="col-12 col-md-9">
+		<button class="btn btn-primary" type="button" id="artikelNeuBtn">Neues
+			Artikel Erstellen</button>
+			
+	</main>
 
-<script type="text/javascript" src="./data.js"></script>
-<script type="text/javascript" src="./blog.js"></script>
-<script>
+	<script type="text/javascript" src="./data.js"></script>
+	<script type="text/javascript" src="./blog.js"></script>
+	<script>
 $(document).ready(()=>{
 	let maincontainer = $("#inhalt");
 	
@@ -38,6 +49,7 @@ $(document).ready(()=>{
 	}
 	let sidebar = createSidebar();
 	maincontainer.append(sidebar);
+	
 })
 </script>
 </body>

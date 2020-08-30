@@ -19,24 +19,26 @@ a{
 <h1>Das ist mein Blog</h1>
 
 <main id="inhaltForOneArticle" class="col-12 col-md-9">
-<button class="btn btn-primary" type="button" id="artikelNeuBtn">Neues Artikel Erstellen</button>
+
 </main>
 </header>
 <script type="text/javascript" src="./data.js"></script>
 <script type="text/javascript" src="./blog.js"></script>
 <script>
-$(document).ready(()=>{
-	let maincontainer = $("#inhaltForOneArticle");
-	
-	const urlParams = new URLSearchParams(window.location.search);
-	const id = urlParams.get('id');
-	let article = articles.find(m=>m.id === id); 
-	let createdArticle = createArticle(article);
-	maincontainer.append(createdArticle);
-	 
-	let sidebar = createSidebar();
-	maincontainer.append(sidebar);
-})
+	$(document).ready(()=>{
+		let maincontainer = $("#inhaltForOneArticle");
+		
+		const urlParams = new URLSearchParams(window.location.search);
+		const id = urlParams.get('id');
+		let article = articles.find(m=>m.id === id); 
+		let createdArticle = createArticle(article);
+		maincontainer.append(createdArticle);
+		 
+		let sidebar = createSidebar();
+		maincontainer.append(sidebar);
+		
+		
+	})
 </script>
 </body>
 </html>

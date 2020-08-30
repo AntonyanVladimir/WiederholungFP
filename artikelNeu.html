@@ -63,11 +63,13 @@
 	<script type="text/javascript" src="./data.js"></script>
 	<script>
 	$(document).ready(()=>{
-		loadArticle();
+		const urlParams = new URLSearchParams(window.location.search);
+		const id = urlParams.get('id');
+		loadArticle(id);
 	})
-	 function loadArticle(){
-		console.log("logged.")
-		let article = articles[0];
+	 function loadArticle(id){
+		
+			 article = articles.find(m=>m.id===id);
 		document.getElementById("ueberschrift").value = article.ueberschrift;
 		document.getElementById("autor").value = article.autor;
 		document.getElementById("datum").value = article.datum.substring(0,10);
