@@ -36,12 +36,13 @@ function createArticle(article){
 		<a href="artikel.html?id=${article.id}"><h2>${article.ueberschrift}</h2></a>
 		<p>${article.datum} von  ${article.autor}</p>
 		<p>${article.anriss}</p>
+		<p>${article.bild}</p>
 		<p>${article.text}</p>
 		<div>
 		 	<a class="btn btn-primary" type="button" href="artikelNeu.html?id=${article.id}">Artikel Bearbeiten</a>
 		</div>
 		
-	</article`);
+	</article>`);
 	
 	let tagsDiv = $("<div></div>");
 	
@@ -82,7 +83,7 @@ function createSidebar(){
 	        <hr>
 	        Tagcloud: [Semantik] [<a href="tagliste.html">HTML5</a>] [Element] [Dokument] [HTTP]
 	        <hr>
-	</aside`);
+	</aside>`);
 	
 	return sidebar;
 }
