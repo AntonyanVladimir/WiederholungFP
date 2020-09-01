@@ -12,10 +12,12 @@ import { ArtikelEditorComponent } from './artikel-editor/artikel-editor.componen
 import { ImpressumComponent } from './impressum/impressum.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
 import { ArtikelShareComponent } from './artikel-share/artikel-share.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
+    
     ArtikelComponent,
     KopfbereichComponent,
     FussbereichComponent,
@@ -24,11 +26,15 @@ import { ArtikelShareComponent } from './artikel-share/artikel-share.component';
     ArtikelEditorComponent,
     ImpressumComponent,
     KontaktComponent,
-    ArtikelShareComponent
+    ArtikelShareComponent,
+
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

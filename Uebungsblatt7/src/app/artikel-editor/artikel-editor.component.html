@@ -1,1 +1,25 @@
-<p>artikel-editor works!</p>
+<h2>Artikel Bearbeiten</h2>
+<form action="#" method="post" onsubmit="doSubmit()">
+    <label for="ueberschrift">Überschrift:
+        <input id="ueberschrift" name="ueberschrift" type="text" [(ngModel)]="article.ueberschrift">
+    </label><br>
+    <label for="autor">Autor:
+        <input id="autor" name="autor" type="text">
+    </label><br>
+    <label for="datum">Datum:
+        <input id="datum" name="datum" type="date">
+    </label><br>
+    <label for="anriss">Anrisstext:
+        <textarea id="anriss" name="anriss" cols="60" rows="5"></textarea>
+    </label><br>
+    <label for="text">Artikeltext:
+        <textarea id="text" name="text" cols="60" rows="10"></textarea>
+    </label><br>
+    <label for="tags">Tags (kommagetrennt):
+        <input id="tags" name="tags" type="text">
+    </label><br>
+    <label for="bild">Bild:
+        <input id="bild" name="bild" type="file">
+    </label><br>
+    <input type="submit" value="Senden">
+</form>

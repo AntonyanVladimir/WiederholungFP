@@ -1,11 +1,15 @@
-<div>
+<div class="mb-4">
 <article>
-		<a href="artikel.html?id=${article.id}"><h2>{{article.ueberschrift}}</h2></a>
-		<p>{{article.autor}}</p>
+		<a href="#" [routerLink]="['/artikel', article.id]"><h2>{{article.ueberschrift}}</h2></a>
+		<p>{{article.datum}} from {{article.autor}}</p>
 		<p>{{article.anriss}}</p>
+		<div class="mb-2"><button class="btn btn-warning" [routerLink]="['/artikelBearbeiten', article.id]">Article bearbeiten</button></div>
 		<img [src]="article.bild">
 		<div class="articleText">
 			<p>{{article.text}}</p>
 		</div>
+		<span class="badge badge-danger mr-1 p-2" *ngFor="let tag of article.tags">
+			{{tag}}
+		</span>
 	</article>
 </div>
