@@ -13,12 +13,17 @@ export class ArtikelListeComponent implements OnInit {
 	constructor(private route: ActivatedRoute, private service: LiefertArticlesService) { }
 	articles: Artikel[];
 	ngOnInit(): void {
-		let suchwort = this.route.snapshot.queryParamMap.get("suchWort");
-		if (suchwort) {
-			this.articles = this.service.getArticlesBySuchwort(suchwort);
-		} else
+		this.route.queryParamMap.subscribe((params)=>{
+			let suchwort = params.get("suchWort");
+			let suchtag = params.get("suchtag");
+			if(suchwort){
+				this.articles = this.service.getArticlesBySuchwort(suchwort);
+			} else if(suchtag){
+				this.articles = this.service.getArticlesByTag(suchtag);
+			}
+			else 
 			this.articles = this.service.getAllArticles();
-
+		})
 	}
 
 }

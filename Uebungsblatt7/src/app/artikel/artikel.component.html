@@ -12,9 +12,9 @@
 				<p>{{article.text}}</p>
 			</div>
 		</div>
-		<span class="badge badge-danger mr-1 p-2" *ngFor="let tag of article.tags">
+		<a class="badge badge-danger mr-1 p-2" *ngFor="let tag of article.tags" [routerLink]="['/']" [queryParams]="{suchtag:tag}">
 			{{tag}}
-		</span>
+		</a>
 		<div class="mt-4">
 			<button class="btn btn-success btn-sm" [routerLink]="['/artikel', article.id]" *ngIf="showCompact" (click)="displayTauschen()">Show Full Article</button>
 		</div>
