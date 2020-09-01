@@ -8,11 +8,13 @@ import { ArtikelComponent } from '../app/artikel/artikel.component';
 
 const routes: Routes = [
 	{ path: '', component: ArtikelListeComponent },
+	{ path: 'articles', component: ArtikelListeComponent },
 	{ path: 'impressum', component: ImpressumComponent },
 	{ path: 'kontakt', component: KontaktComponent },
 	{ path: 'article', component: ArtikelComponent },
 	{ path: 'artikel/:id', component: ArtikelComponent },
-	{ path: 'artikelBearbeiten/:id', component: ArtikelEditorComponent }
+	{ path: 'artikelBearbeiten/:id', component: ArtikelEditorComponent },
+	{ path: '**', component: ArtikelListeComponent }
 
 ];
 

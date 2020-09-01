@@ -1,10 +1,11 @@
-<aside class = "col-12 col-md-3 mt-5">
+<aside class="mt-5">
 			Seitenleiste:<br>
-	Login: <input type="text" size="10" /><br>
-	Passwort: <input type="text" size="10" /><br>
+	Useraname: <input type="text"  class="form-control" /><br>
+	Passwort: <input type="text" class="form-control" /><br>
 	<a href="#">Login</a>
 	<hr>
-	<input type="text" size="10" id="sucheTextFeld" />&nbsp;<a id="sucheBtn">Suchen</a>
+	<input type="text" id="sucheTextFeld" class="form-control"  [(ngModel)]="suchwort" />&nbsp;
+	<a id="sucheBtn" class="btn btn-primary mt-2" href="#" routerLink='/articles' [queryParams]="{ suchWort: suchwort}">Suchen</a>
 	<hr>
 	<a href="monatsliste.html">November 2017 (3)</a><br>
 	<a href="monatsliste.html">Dezember 2017 (1)</a><br>

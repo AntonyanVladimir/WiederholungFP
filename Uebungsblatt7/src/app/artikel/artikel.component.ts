@@ -11,15 +11,26 @@ import { ActivatedRoute } from '@angular/router';
 
 export class ArtikelComponent implements OnInit {
 	@Input() article: Artikel
+	showCompact: boolean;
 
 	constructor(private route: ActivatedRoute, private service: LiefertArticlesService) { }
 
 	ngOnInit(): void {
 		const artikelId = this.route.snapshot.paramMap.get('id');
-		if (artikelId)
+		const view = this.route.snapshot.queryParamMap.get('view');
+		if (view == "compact")
+			this.showCompact = true;
+			else 
+			this.showCompact = false;
+		if (artikelId) {
 			this.article = this.service.getArticleById(artikelId);
-	}
+		}
 
+	}
+	displayTauschen(){
+		this.showCompact = !this.showCompact;
+	}
+	
 }
 
 

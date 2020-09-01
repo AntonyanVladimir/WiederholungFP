@@ -3,13 +3,20 @@
 		<a href="#" [routerLink]="['/artikel', article.id]"><h2>{{article.ueberschrift}}</h2></a>
 		<p>{{article.datum}} from {{article.autor}}</p>
 		<p>{{article.anriss}}</p>
-		<div class="mb-2"><button class="btn btn-warning" [routerLink]="['/artikelBearbeiten', article.id]">Article bearbeiten</button></div>
-		<img [src]="article.bild">
-		<div class="articleText">
-			<p>{{article.text}}</p>
+		<div *ngIf="!showCompact">
+			<div class="mb-2"><button class="btn btn-warning mr-1" [routerLink]="['/artikelBearbeiten', article.id]">Article bearbeiten</button>
+			<button class="btn btn-primary" [routerLink]="['/artikel', article.id]" [queryParams]="{ view: 'compact'}" (click)="displayTauschen()">Show Compact</button>
+			</div>
+			<img [src]="article.bild">
+			<div class="articleText">
+				<p>{{article.text}}</p>
+			</div>
 		</div>
 		<span class="badge badge-danger mr-1 p-2" *ngFor="let tag of article.tags">
 			{{tag}}
 		</span>
+		<div class="mt-4">
+			<button class="btn btn-success btn-sm" [routerLink]="['/artikel', article.id]" *ngIf="showCompact" (click)="displayTauschen()">Show Full Article</button>
+		</div>
 	</article>
 </div>

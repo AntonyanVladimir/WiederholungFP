@@ -1,25 +1,26 @@
 <h2>Artikel Bearbeiten</h2>
-<form action="#" method="post" onsubmit="doSubmit()">
+<form action="#" method="post" (submit)="dosubmit()">
     <label for="ueberschrift">Überschrift:
-        <input id="ueberschrift" name="ueberschrift" type="text" [(ngModel)]="article.ueberschrift">
+        <input class="form-control" id="ueberschrift" name="ueberschrift" type="text" [(ngModel)]="article.ueberschrift">
     </label><br>
     <label for="autor">Autor:
-        <input id="autor" name="autor" type="text">
+        <input class="form-control" id="autor" name="autor" type="text" [(ngModel)]="article.autor">
     </label><br>
     <label for="datum">Datum:
-        <input id="datum" name="datum" type="date">
+        <input class="form-control" id="datum" name="datum" type="date" [(ngModel)]="article.datum">
     </label><br>
     <label for="anriss">Anrisstext:
-        <textarea id="anriss" name="anriss" cols="60" rows="5"></textarea>
+        <textarea class="form-control" id="anriss" name="anriss" cols="60" rows="5" [(ngModel)]="article.anriss"></textarea>
     </label><br>
     <label for="text">Artikeltext:
-        <textarea id="text" name="text" cols="60" rows="10"></textarea>
+        <textarea class="form-control"  id="text" name="text" cols="60" rows="10" [(ngModel)]="article.text"></textarea>
     </label><br>
     <label for="tags">Tags (kommagetrennt):
-        <input id="tags" name="tags" type="text">
+        <input class="form-control" id="tags" name="tags" type="text" [(ngModel)]="article.tags">
     </label><br>
     <label for="bild">Bild:
-        <input id="bild" name="bild" type="file">
+        <input class="form-control" id="bild" name="bild" type="text" [(ngModel)] = "article.bild">
     </label><br>
-    <input type="submit" value="Senden">
+    <input class="btn btn-primary mr-1" type="submit" value="Save">
+    <button class="btn btn-danger" (click)="cancel()">Cancel</button>
 </form>

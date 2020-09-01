@@ -1,3 +1,5 @@
+import { LiefertArticlesService } from './../liefert-articles.service';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
+  suchwort: string;
+  constructor(private route: ActivatedRoute, private service: LiefertArticlesService) { }
 
   ngOnInit(): void {
   }
