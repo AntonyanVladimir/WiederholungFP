@@ -1,3 +1,8 @@
+<div class="mt-2 mb-4 p-2" id="filterDiv" *ngIf="filterEinsetzen">
+	<span id="filterSuchtag" class="mr-2">Tag: {{suchtag}} [<a (click)="removeTagfilter()">X</a>]</span>
+	<span id="filterSuchwort">Query: {{suchwort}} [<a (click)="removeSuchwortFilter()">X</a>]</span>
+</div><br>
+
 <button class="btn btn-primary mr-1" (click)="navigateCompact()">Show alle Compact</button>
 <button class="btn btn-danger" (click)="navigateFull()">Show alle full</button>
 <div *ngFor="let art of articles">

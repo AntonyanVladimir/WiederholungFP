@@ -10,48 +10,79 @@ import { ConditionalExpr } from '@angular/compiler';
 	styleUrls: ['./artikel-liste.component.css']
 })
 export class ArtikelListeComponent implements OnInit {
-	isCompact:boolean;
+	isCompact: boolean;
 	constructor(private route: ActivatedRoute, private service: LiefertArticlesService, private router: Router) { }
 	currentRoute;
+	filterEinsetzen: boolean;
+	suchtag: string;
+	suchwort: string;
 	articles: Artikel[];
 	ngOnInit(): void {
 		this.currentRoute = this.route.url;
 		console.log(this.currentRoute);
-		this.route.queryParamMap.subscribe((params)=>{
-			let suchwort = params.get("suchWort");
-			let suchtag = params.get("suchtag");
+		this.route.queryParamMap.subscribe((params) => {
+			this.suchwort = params.get("suchWort");
+			this.suchtag = params.get("suchtag");
+			if (this.suchwort || this.suchtag) {
+				this.filterEinsetzen = true;
+				this.articles = this.service.getArticlesBySuchtagUndSuchwort(this.suchtag, this.suchwort);
+			} else
+				this.filterEinsetzen = false;
 			let view = params.get('view');
-			if(view==='compact')
+			if (view === 'compact')
 				this.isCompact = true;
-			else if(view == 'full')
+			else if (view == 'full')
 				this.isCompact = false;
 
-				if(suchwort){
-				this.articles = this.service.getArticlesBySuchwort(suchwort);
-			} else if(suchtag){
-				this.articles = this.service.getArticlesByTag(suchtag);
+			if (this.suchwort) {
+				this.articles = this.service.getArticlesBySuchwort(this.suchwort, this.service.getAllArticles());
+			} else if (this.suchtag) {
+				this.articles = this.service.getArticlesByTag(this.suchtag, this.service.getAllArticles());
 			}
-			else 
-			this.articles = this.service.getAllArticles();
+			else
+				this.articles = this.service.getAllArticles();
 		})
 	}
-	navigateCompact(){
+	navigateCompact() {
 		this.router.navigate(
-			[], 
+			[],
 			{
-			  relativeTo: this.route,
-			  queryParams: { view: 'compact' },
-			  queryParamsHandling: 'merge'
+				relativeTo: this.route,
+				queryParams: { view: 'compact' },
+				queryParamsHandling: 'merge'
 			});
 	}
-	navigateFull(){
+	navigateFull() {
 		this.router.navigate(
-			[], 
+			[],
 			{
-			  relativeTo: this.route,
-			  queryParams: { view: 'full' },
-			  queryParamsHandling: 'merge'
+				relativeTo: this.route,
+				queryParams: { view: 'full' },
+				queryParamsHandling: 'merge'
 			});
+	}
+	removeTagfilter() {
+		this.router.navigate(
+			[],
+			{
+				relativeTo: this.route,
+				queryParams: {
+				suchtag: null,
+				
+				},
+				queryParamsHandling: 'merge'
+			})
+	}
+	removeSuchwortFilter(){
+		this.router.navigate(
+			[],
+			{
+				relativeTo: this.route,
+				queryParams: {
+				suchWort: null,
+				},
+				queryParamsHandling: 'merge'
+			})
 	}
 
 }
