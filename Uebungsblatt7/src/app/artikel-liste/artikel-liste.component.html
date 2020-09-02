@@ -1,3 +1,5 @@
+<button class="btn btn-primary mr-1" (click)="navigateCompact()">Show alle Compact</button>
+<button class="btn btn-danger" (click)="navigateFull()">Show alle full</button>
 <div *ngFor="let art of articles">
-	<app-artikel [article]="art"></app-artikel>
+	<app-artikel [showCompact]="isCompact" [article]="art"></app-artikel>
 </div>
