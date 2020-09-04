@@ -8,7 +8,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>
 </head>
   <body>
     <div class="container mt-4 p-2">
@@ -37,7 +40,7 @@
             <input type="text" class="form-control" id="ergebnis" placeholder="Ergebnis...">
           </div>
           <div class="col-2">
-            <button class="btn btn-danger" onclick="berechnen()">Berechnen</button>
+            <button class="btn btn-danger" onclick="berechnenAJAX()">Berechnen</button>
           </div>
         </div>
       </div>
@@ -68,6 +71,33 @@
         };
         xhttp.open("GET", url, true);
         xhttp.send();
+      }
+
+      function berechnenAJAX() {
+          //get url 
+          let operation = document.getElementById('operation');
+          switch(operation.value){
+              case '+': urlPart1 = 'add'; break;
+              case '*':urlPart1 = 'mul'; break;
+              case '-':urlPart1 = 'sub'; break;
+              case '/':urlPart1 = 'div'; break;
+              default: urlPart1 = 'ERROR: falsche Operation'; break;
+          }
+          urlPart2 = document.getElementById("input1").value;
+          urlPart3 = document.getElementById("input2").value;
+          let url = baseUrl+urlPart1+'/'+urlPart2+'/'+urlPart3;
+         $.ajax({
+           type:'GET',
+           url:url,
+           contentType:'application/json',
+           dataType:'text/plain'
+         })
+         .done(data=>{
+          $("#ergebnis").val(result);
+         })
+         .fail(()=>{
+           alert("Error!!!");
+         })
       }
     </script>
   </body>
