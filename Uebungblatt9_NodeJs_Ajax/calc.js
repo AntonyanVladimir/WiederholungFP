@@ -15,7 +15,7 @@ server.listen(3000);
 // req: Anfrage vom Client (Request)
 // res: Antwort des Servers (Response)
 function serve(req, res) {
-  res.writeHead(200, { "Content-Type": "text/html", 'Access-Control-Allow-Origin': 'null'});
+  res.writeHead(200, { "Content-Type": "text/html", 'Access-Control-Allow-Origin': '*'});
   var meinparams = url.parse(req.url, true).path.split("/");
   let operation = meinparams[1];
   let operand1 = meinparams[2];
