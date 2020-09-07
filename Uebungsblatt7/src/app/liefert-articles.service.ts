@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Artikel } from './artikel';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LiefertArticlesService {
+  baseUrl = 'http://localhost:3000';
+  constructor(private http:HttpClient) { }
 
-  constructor() { }
-  public getAllArticles(): Artikel[] {
-    return this.articles;
+  public getAllArticles(): Observable<Artikel []> {
+    return this.http.get<Artikel[]>(this.baseUrl+'/'+'articles');
   }
-  public getArticleById(id) {
-    return this.articles.find(m => m.id === id);
+  public getArticleById(id):Observable<Artikel> {
+    return this.http.get<Artikel>(this.baseUrl+'/'+'articles'+'/'+id);
   }
 
   public getArticlesByTag(testTag, artikels: Artikel[]): Artikel[] {
@@ -45,7 +48,7 @@ export class LiefertArticlesService {
       return arts;
     }
   }
-  public getArticlesBySuchtagUndSuchwort(suchtag, suchwort){
+  public getArticlesBySuchtagUndSuchwort(suchtag, suchwort) {
     let bysuchtag = this.getArticlesByTag(suchtag, this.articles);
 
     return this.getArticlesBySuchwort(suchwort, bysuchtag);

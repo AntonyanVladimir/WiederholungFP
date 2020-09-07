@@ -22,13 +22,17 @@ export class ArtikelComponent implements OnInit {
 			if (view === 'alleCompact' || view ==='compact')
 			this.showCompact = true;
 			else 
-				this.showCompact = false;
+				this.showCompact = false; 
 
 		})
 		const artikelId = this.route.snapshot.paramMap.get('id');
 		
 		if (artikelId) 
-			this.article = this.service.getArticleById(artikelId);
+			this.service.getArticleById(artikelId).subscribe(artikel=>{
+				this.article = artikel;
+			}, error=>{
+				alert(error);
+			})
 
 	}
 	displayTauschen() {
