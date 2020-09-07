@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="./jQuery.js"></script>
+</head>
+  <body>
+    <div class="container mt-4 p-2">
+      <h2>Simple Calculator</h2>
+      <div class="row">
+            <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+              <input type="number" class="form-control" id="input1"/>
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+              <select name="operationen" id="operation" class="form-control">
+                <option>+</option>
+                <option>*</option>
+                <option>-</option>
+                <option>/</option>
+              </select>
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+              <input type="number" class="form-control" id="input2" />
+            </div>
+             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+
+             </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+            <input type="text" class="form-control" id="ergebnis" placeholder="Ergebnis...">
+          </div>
+          <div class="col-2">
+            <button class="btn btn-danger" onclick="berechnenAJAX()">Berechnen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        const baseUrl = "http://localhost:3000/";
+        var urlPart1;
+        var urlPart2;
+        var urlPart3; 
+        function berechnen() {
+          //get url 
+          let operation = document.getElementById('operation');
+          switch(operation.value){
+              case '+': urlPart1 = 'add'; break;
+              case '*':urlPart1 = 'mul'; break;
+              case '-':urlPart1 = 'sub'; break;
+              case '/':urlPart1 = 'div'; break;
+              default: urlPart1 = 'ERROR: falsche Operation'; break;
+          }
+          urlPart2 = document.getElementById("input1").value;
+          urlPart3 = document.getElementById("input2").value;
+          let url = baseUrl+urlPart1+'/'+urlPart2+'/'+urlPart3;
+         var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("ergebnis").value = this.responseText;
+          }
+        };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+      }
+
+      function berechnenAJAX() {
+          //get url 
+          let operation = document.getElementById('operation');
+          switch(operation.value){
+              case '+': urlPart1 = 'add'; break;
+              case '*':urlPart1 = 'mul'; break;
+              case '-':urlPart1 = 'sub'; break;
+              case '/':urlPart1 = 'div'; break;
+              default: urlPart1 = 'ERROR: falsche Operation'; break;
+          }
+          urlPart2 = document.getElementById("input1").value;
+          urlPart3 = document.getElementById("input2").value;
+          let url = baseUrl+urlPart1+'/'+urlPart2+'/'+urlPart3;
+         $.ajax({
+           type:'GET',
+           url:url
+         })
+         .done(data=>{
+          $('#ergebnis').val(data);
+         })
+         .fail(()=>{
+           alert("Error!!!");
+         })
+      }
+    </script>
+  </body>
+</html>

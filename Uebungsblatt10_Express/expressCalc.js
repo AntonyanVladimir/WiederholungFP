@@ -2,6 +2,7 @@ const express = require('express');
 const { json } = require('body-parser');
 
 const app = express();
+const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 
@@ -10,6 +11,9 @@ app.listen(PORT, () => console.log(`Listening on Port ${PORT}`));
 app.get('/', (req, res) => {
     res.send("Hallo Welt");
 })
+
+//Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/:operation/:op1/:op2', (req, res) => {
     let operation = req.params.operation;
