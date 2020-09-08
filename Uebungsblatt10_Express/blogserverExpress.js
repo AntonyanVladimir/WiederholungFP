@@ -1,6 +1,8 @@
 const express = require('express');
 const { json } = require('body-parser');
 const app = express();
+const cors = require('cors');
+app.use(cors());
 const bodyParser = require('body-parser');
 app.use(express.json());
 var arts = [];
@@ -12,11 +14,11 @@ app.listen(3000, () => console.log(`Listening on Port ${3000}`));
 
 app.get('/articles', (req, res) => {
     let artikels;
-    if (req.query.tag && req.query.suchwort) {
-        artikels = getArticlesByTagUndQuery(req.query.tag, req.query.suchwort, arts);
+    if (req.query.suchtag && req.query.suchwort) {
+        artikels = getArticlesByTagUndQuery(req.query.suchtag, req.query.suchwort, arts);
     }
-    else if (req.query.tag) {
-        artikels = getArticlesByTag(req.query.tag, arts);
+    else if (req.query.suchtag) {
+        artikels = getArticlesByTag(req.query.suchtag, arts); 
 
     } else if (req.query.suchwort) {
         artikels = getArticlesBySuchwort(req.query.suchwort, arts);

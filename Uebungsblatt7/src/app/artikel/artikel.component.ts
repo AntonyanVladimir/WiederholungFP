@@ -16,14 +16,12 @@ export class ArtikelComponent implements OnInit {
 	constructor(private route: ActivatedRoute, private service: LiefertArticlesService) { }
 
 	ngOnInit(): void {
-		
 		this.route.queryParamMap.subscribe(queryParams => {
 			const view = queryParams.get('view');
 			if (view === 'alleCompact' || view ==='compact')
 			this.showCompact = true;
 			else 
 				this.showCompact = false; 
-
 		})
 		const artikelId = this.route.snapshot.paramMap.get('id');
 		
@@ -33,7 +31,6 @@ export class ArtikelComponent implements OnInit {
 			}, error=>{
 				alert(error);
 			})
-
 	}
 	displayTauschen() {
 		this.showCompact = !this.showCompact;

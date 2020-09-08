@@ -14,10 +14,15 @@ export class ArtikelEditorComponent implements OnInit {
   article:Artikel;
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.article = this.service.getArticleById(id);
-  }
-  dosubmit(){
+    this.service.getArticleById(id).subscribe(artikel=>{
+      this.article = artikel;
+    })
     
+  }
+  dosubmit(article){
+    this.service.editArticle(article).subscribe(artikel =>{
+      this.article = artikel;
+    })
     location.href = "/";
   }
   cancel(){

@@ -23,26 +23,9 @@ export class ArtikelListeComponent implements OnInit {
 		this.route.queryParamMap.subscribe((params) => {
 			this.suchwort = params.get("suchWort");
 			this.suchtag = params.get("suchtag");
-			// if (this.suchwort || this.suchtag) {
-			// 	this.filterEinsetzen = true;
-			// 	this.articles = this.service.getArticlesBySuchtagUndSuchwort(this.suchtag, this.suchwort);
-			// } else
-			// 	this.filterEinsetzen = false;
-			// let view = params.get('view');
-			// if (view === 'compact')
-			// 	this.isCompact = true;
-			// else if (view == 'full')
-			// 	this.isCompact = false;
+			this.service.getAllArticles(this.suchtag, this.suchwort).subscribe(artikels =>{
 
-			// if (this.suchwort) {
-			// 	this.articles = this.service.getArticlesBySuchwort(this.suchwort, this.service.getAllArticles());
-			// } else if (this.suchtag) {
-			// 	this.articles = this.service.getArticlesByTag(this.suchtag, this.service.getAllArticles());
-			// }
-			// else
-			// 	this.articles = this.service.getAllArticles();
-			this.service.getAllArticles().subscribe(articles =>{
-				this.articles = articles;
+				this.articles = artikels;
 			})
 		})
 	}
