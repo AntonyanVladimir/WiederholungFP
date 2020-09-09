@@ -10,6 +10,7 @@
 			<div *ngIf="!showCompact">
 				<div class="mb-2"><button class="btn btn-warning mr-1"
 						[routerLink]="['/artikelBearbeiten', article.id]">Article bearbeiten</button>
+						<button class="btn btn-danger mr-1" (click)="onDelete(article)">Delete</button>
 					<button class="btn btn-primary" [routerLink]="['/artikel', article.id]"
 						[queryParams]="{ view: 'compact'}" (click)="displayTauschen()">Show Compact</button>
 				</div>

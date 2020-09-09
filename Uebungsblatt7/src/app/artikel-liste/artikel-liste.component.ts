@@ -71,4 +71,10 @@ export class ArtikelListeComponent implements OnInit {
 			})
 	}
 
+	deleteArtikel(article:Artikel){
+		this.articles = this.articles.filter(a=>a.id!==article.id);
+
+		this.service.deleteArticle(article.id).subscribe();
+	}
+
 }

@@ -13,6 +13,8 @@ import { ImpressumComponent } from './impressum/impressum.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
 import { ArtikelShareComponent } from './artikel-share/artikel-share.component';
 import { FormsModule } from '@angular/forms';
+import { NeuenArtikelErstellenComponent } from './neuen-artikel-erstellen/neuen-artikel-erstellen.component';
+import { TagsComponent } from './tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { FormsModule } from '@angular/forms';
     ImpressumComponent,
     KontaktComponent,
     ArtikelShareComponent,
+    NeuenArtikelErstellenComponent,
+    TagsComponent,
 
     
   ],

@@ -1,5 +1,5 @@
 import { LiefertArticlesService } from './../liefert-articles.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Artikel } from '../artikel'
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ArtikelComponent implements OnInit {
 	@Input() article: Artikel
 	@Input() showCompact: boolean;
+	@Output() deleteArtikel:EventEmitter<Artikel> = new EventEmitter();
 
 	constructor(private route: ActivatedRoute, private service: LiefertArticlesService) { }
 
@@ -34,6 +35,9 @@ export class ArtikelComponent implements OnInit {
 	}
 	displayTauschen() {
 		this.showCompact = !this.showCompact;
+	}
+	onDelete(article){
+		this.deleteArtikel.emit(article);
 	}
 
 }

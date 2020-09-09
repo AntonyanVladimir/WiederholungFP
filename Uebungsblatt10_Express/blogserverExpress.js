@@ -41,8 +41,9 @@ app.delete('/articles/:id', (req, res) => {
     let id = req.params.id;
     let artikel = arts.find(m => m.id === id);
     if (artikel) {
-        arts.pop(artikel);
-        res.status(200).json({ message: `The article with Id ${id} wurde gelöscht.` });
+        let index = arts.indexOf(artikel); 
+        arts.splice(index,1);
+        res.status(200).json({ message: `The article with Id ${id} ist delteted.` });
     }
     else
         res.status(400).json({ errorMessage: `The article with Id ${id} cannot be found.` });

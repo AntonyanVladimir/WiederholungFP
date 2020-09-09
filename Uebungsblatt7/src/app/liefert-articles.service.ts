@@ -22,12 +22,12 @@ export class LiefertArticlesService {
     let url;
     if (suchtag && suchwort)
       url = this.baseUrl + '/' + `articles?suchtag=${suchtag}&suchwort=${suchwort}`;
-    else if(suchtag)
+    else if (suchtag)
       url = this.baseUrl + '/' + `articles?suchtag=${suchtag}`;
-    else if(suchwort)
+    else if (suchwort)
       url = this.baseUrl + '/' + `articles?suchwort=${suchwort}`;
-      else
-       url = this.baseUrl + '/' + 'articles'; 
+    else
+      url = this.baseUrl + '/' + 'articles';
     return this.http.get<Artikel[]>(url);
   }
   public getArticleById(id): Observable<Artikel> {
@@ -36,6 +36,16 @@ export class LiefertArticlesService {
 
   public editArticle(article: Artikel): Observable<Artikel> {
     return this.http.put<Artikel>(this.baseUrl + '/' + 'articles' + '/' + article.id, article, httpOptions);
+  }
+  public createArticle(article): Observable<Artikel> {
+    return this.http.post<Artikel>(this.baseUrl + '/' + 'articles', article, httpOptions);
+  }
+
+  public deleteArticle(id): Observable<Artikel> {
+    return this.http.delete<Artikel>(this.baseUrl + '/' + 'articles' + '/' + id);
+  }
+  public getTags():Observable<any>{
+    return this.http.get<any>(this.baseUrl+'/'+'tags');
   }
 
   public getArticlesByTag(testTag, artikels: Artikel[]): Artikel[] {

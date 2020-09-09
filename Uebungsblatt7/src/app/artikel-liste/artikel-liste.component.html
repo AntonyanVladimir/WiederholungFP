@@ -2,9 +2,18 @@
 	<span id="filterSuchtag" class="mr-2">Tag: {{suchtag}} [<a (click)="removeTagfilter()">X</a>]</span>
 	<span id="filterSuchwort">Query: {{suchwort}} [<a (click)="removeSuchwortFilter()">X</a>]</span>
 </div><br>
+<div class="row">
+	<div class="col">
+		<button class="btn btn-primary mr-1" (click)="navigateCompact()">Show alle Compact</button>
+		<button class="btn btn-danger mr-1 mt-2" (click)="navigateFull()">Show alle full</button>
+	</div>
+	<div class="col">
+		<button class="btn btn-warning mr-1" routerLink= "/neuerArtikel" >Neuen Artikel Erstellen</button>
+		<button class="btn btn-dark mt-2" routerLink="/tags">Tags</button>
+	</div>
+</div>
 
-<button class="btn btn-primary mr-1" (click)="navigateCompact()">Show alle Compact</button>
-<button class="btn btn-danger" (click)="navigateFull()">Show alle full</button>
+
 <div *ngFor="let art of articles">
-	<app-artikel [showCompact]="isCompact" [article]="art"></app-artikel>
+	<app-artikel [showCompact]="isCompact" [article]="art" (deleteArtikel)="deleteArtikel($event)"></app-artikel>
 </div>
