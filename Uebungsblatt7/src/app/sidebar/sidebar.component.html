@@ -12,6 +12,6 @@
 	<a href="monatsliste.html">März 2018 (2)</a><br>
 	<a href="monatsliste.html">April 2018 (1)</a><br>
 	<hr>
-	Tagcloud: [Semantik] [<a href="tagliste.html">HTML5</a>] [Element] [Dokument] [HTTP]
+	Tagcloud:  <div class="col-12"><a *ngFor="let tag of tagListe | keyvalue" routerLink='/' [queryParams]="{suchtag: tag.key}" [class]="'badge badge-pill badge-info mr-1 mt-1 tag-'+getGroesse(tag.key)">{{tag.key}} </a></div>    
 	<hr>
 </aside>
